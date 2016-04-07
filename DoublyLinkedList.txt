@@ -1,0 +1,107 @@
+package lab2;
+                                 /**DoublyLinkedList code stars from here**/
+public class Doubly_linked_list {
+	     public Object NODE;
+		 NODE root;
+		 NODE temp;
+		 NODE curr;
+		 NODE end;
+		 
+		 
+	                                      /**function to add a node in a Doubly Linked list, starts from here**/
+		public void addNodes(int dstore) {
+			NODE node = new NODE(dstore);
+			if(root==null){
+				root = node;
+				root.nextNode = null;
+				root.prevNode = null;
+				end=node;
+				}
+			else {
+				curr = root;
+				while(curr.nextNode!=null) {
+					curr = curr.nextNode;
+				}
+				curr.nextNode = node;
+				node.nextNode = null;
+				node.prevNode = curr;
+				end=node;
+				}
+			}
+		
+		
+	                                                 /**function to insert a node in Doubly Linked list, starts from here**/
+		public void insertNode(int data, int after) {
+			NODE node = new NODE(data);
+			// i specifies the node no.//
+			int i = 1;
+			curr = root;
+			while(i != after){
+				curr = curr.nextNode;
+				i++;	
+			}
+			temp = curr.nextNode;
+			curr.nextNode = node;
+			node.nextNode = temp;
+			temp.prevNode = node;
+			node.prevNode = curr;
+			end=node;
+			}
+
+		
+	                                            /**function to delete a node from Doubly Linked list starts from here**/
+		public void deleteNode(int nodeNumber) {
+			int i = 1;
+			curr = root;
+			if(nodeNumber==1) {
+				root = curr.nextNode;
+				curr.nextNode = null;
+				curr.prevNode = null;
+				}
+			else {
+				while(i != nodeNumber) {
+					curr = curr.nextNode;
+					i++;
+					}
+				if(curr.nextNode == null) {
+					end=curr.prevNode;
+					curr.prevNode.nextNode = null;
+					curr.prevNode = null;
+					}
+				else {
+					curr.prevNode.nextNode = curr.nextNode;
+					curr.nextNode.prevNode = curr.prevNode;
+				}	
+			}
+		}
+		
+	       public void print(){
+			
+	    	   curr = root;
+	    	   
+	    	   while(curr!=null) {
+			
+				System.out.print(curr.data);
+				
+				curr = curr.nextNode;
+	    	   }
+			}
+	       
+	}
+
+
+	            /**DoublyLinkedList's node code starts from here**/
+	class NODE {
+	    int noOfLinkedList = 0;
+		int data;
+		
+		NODE prevNode;
+		NODE nextNode;
+		
+		NODE(int data) {
+			this.data = data;
+			noOfLinkedList++;
+		}
+	}
+
+	                                           /**DoublyLinkedList code ends here**/
